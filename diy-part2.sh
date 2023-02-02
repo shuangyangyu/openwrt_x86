@@ -8,9 +8,24 @@
 # https://github.com/P3TERX/Actions-OpenWrt
 # File name: diy-part2.sh
 # Description: OpenWrt DIY script part 2 (After Update feeds)
-#
-# Modify default IP
-sed -i 's/192.168.1.1/192.168.8.1/g' package/base-files/files/bin/config_generate
+
+##########################################################################################
+# 1.更改默认IP
+sed -i 's/192.168.1.1/192.168.5.100/g' package/base-files/files/bin/config_generate
+
+# 2.清除默认密码/改密码为 
+sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' package/lean/default-settings/files/zzz-default-settings
+
+# 5.修改默认主题
+# sed -i 's/luci-theme-bootstrap/luci-theme-argonne/g' feeds/luci/collections/luci/Makefile
+
+##########################################################################################
+
+
+
+
+
+
 
 #6.添加自动挂载磁盘脚本
 #mkdir -p files/etc/hotplug.d/block && wget -O files/etc/hotplug.d/block/30-usbmount https://raw.githubusercontent.com/ficheny/P3TERX_Actions-OpenWrt/main/files/etc/hotplug.d/block/30-usbmount && chmod 755 files/etc/hotplug.d/block/30-usbmount
@@ -42,6 +57,7 @@ sed -i '/customized in this file/a net.netfilter.nf_conntrack_max=165535' packag
 git clone https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
 git clone https://github.com/Leo-Jo-My/luci-theme-opentomcat.git package/luci-theme-opentomcat
 git clone https://github.com/openwrt-develop/luci-theme-atmaterial.git package/luci-theme-atmaterial
+
 # Add luci-theme-argon
 git clone https://github.com/kiddin9/luci-app-dnsfilter.git package/luci-app-dnsfilter
 
